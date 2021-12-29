@@ -1,0 +1,38 @@
+name: runltp-rs
+version: "1.0"
+author: Andrea Cervesato <andrea.cervesato@suse.com>
+about: LTP runner made in Rust
+args:
+    - ltp-root:
+        short: r
+        long: ltproot
+        value_name: LTPROOT
+        help: Define the LTPROOT variable
+        takes_value: false
+subcommands:
+    - list:
+        about: List testing suites
+        args:
+            - scenario:
+                short: s
+                long: scenario
+                help: Show testing suites scenarios
+                takes_value: false
+    - run:
+        about: Execute user defined list of test suites (separate with ',')
+        args:
+            - cmdfiles:
+                value_name: CMDFILES
+                help: List of test suites (separate with ',')
+                index: 1
+                required: false
+            - default:
+                short: d
+                long: default
+                help: Run default test suites only
+                takes_value: false
+            - network:
+                short: n
+                long: network
+                help: Run network test suites only
+                takes_value: false
