@@ -13,12 +13,12 @@ fn main() -> Result<(), Error> {
 
         if m.is_present("cmdfiles") {
             let cmdfiles = m.value_of("cmdfiles").unwrap();
-            let suites: Vec<String> = cmdfiles.split(",").map(|s| s.to_string()).collect();
+            let suites: Vec<&str> = cmdfiles.split(",").collect();
             session = Session::from(suites);
         } else if m.is_present("network") {
-            session = Session::from_scenario("network".to_string());
+            session = Session::from_scenario("network");
         } else {
-            session = Session::from_scenario("default".to_string());
+            session = Session::from_scenario("default");
         }
 
         session.run();
@@ -29,8 +29,8 @@ fn main() -> Result<(), Error> {
             let net_session;
             let def_session;
 
-            net_session = Session::from_scenario("network".to_string());
-            def_session = Session::from_scenario("default".to_string());
+            net_session = Session::from_scenario("network");
+            def_session = Session::from_scenario("default");
 
             println!("Default suites:");
             for item in def_session.suites {

@@ -17,18 +17,18 @@ impl Suite {
     }
 
     /// Create a testing suite from its name.
-    pub fn from(name: String) -> Self {
+    pub fn from(name: &str) -> Self {
         let runtest_dir = ltp::runtest_dir();
         let path = format!("{}/{}", runtest_dir, name);
         let lines = ltp::read_ltp_file(path);
 
         let mut tests = Vec::new();
         for line in lines {
-            let test = Test::from_declaration(line);
+            let test = Test::from_declaration(&line);
             tests.push(test);
         }
 
-        Suite::new(name, tests)
+        Suite::new(name.to_string(), tests)
     }
 
     /// Run all tests inside the suite.

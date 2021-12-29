@@ -34,22 +34,16 @@ impl Test {
     }
 
     /// Create a new test from a test declaration inside the runtest file.
-    pub fn from_declaration(line: String) -> Self {
+    pub fn from_declaration(line: &str) -> Self {
         let parts: Vec<String> = line.split_whitespace().map(|x| x.to_string()).collect();
-        let name = parts[0].clone();
-        let cmd = parts[1].clone();
-        let args;
-
-        if parts.len() > 2 {
-            args = parts[2..].to_vec();
-        } else {
-            args = Vec::new();
-        }
+        let name = parts[0].to_string();
+        let cmd = parts[1].to_string();
+        let args = parts[2..].to_vec();
 
         Test::new(name, cmd, args)
     }
 
-    fn process_stdout(&mut self, line: String) {
+    fn process_stdout(&mut self, line: &str) {
         if line.contains("TPASS") {
             self.pass += 1;
         } else if line.contains("TFAIL") {
@@ -61,6 +55,8 @@ impl Test {
         } else if line.contains("TBROK") {
             self.brok += 1;
         }
+
+        self.out.push_str(&format!("{}\n", line));
 
         println!("{}", line);
     }
@@ -99,7 +95,7 @@ impl Test {
         reader
             .lines()
             .filter_map(|line| line.ok())
-            .for_each(|line| self.process_stdout(line));
+            .for_each(|line| self.process_stdout(&line));
 
         Ok(())
     }
