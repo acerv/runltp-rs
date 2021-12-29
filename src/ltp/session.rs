@@ -40,7 +40,7 @@ impl Session {
     /// Create a session from a scenario_groups file.
     pub fn from_scenario(name: &str) -> Self {
         let path = format!("{}/{}", ltp::scenario_dir(), name);
-        let lines = ltp::read_ltp_file(path);
+        let lines = ltp::utils::read_ltp_file(path);
 
         let mut suites = Vec::new();
         for line in lines {

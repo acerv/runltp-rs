@@ -20,7 +20,7 @@ impl Suite {
     pub fn from(name: &str) -> Self {
         let runtest_dir = ltp::runtest_dir();
         let path = format!("{}/{}", runtest_dir, name);
-        let lines = ltp::read_ltp_file(path);
+        let lines = ltp::utils::read_ltp_file(path);
 
         let mut tests = Vec::new();
         for line in lines {
