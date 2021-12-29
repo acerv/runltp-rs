@@ -25,14 +25,14 @@ run LTP testing suites and test the Linux kernel.
 
 # Development status
 
-[x] method for binaries execution
-[x] method for bash scripts execution
-[x] parse runtest file
-[x] execute runtest file
-[x] execute "scenario_groups/default"
-[x] list available testing suites
-[ ] set LTPROOT via command line
-[ ] report file
-[ ] download and install LTP from git
-[ ] run testing suite inside VM
-[ ] run testing suite via SSH
+- [x] method for binaries execution
+- [x] method for bash scripts execution
+- [x] parse runtest file
+- [x] execute runtest file
+- [x] execute "scenario_groups/default"
+- [x] list available testing suites
+- [ ] set LTPROOT via command line
+- [ ] report file
+- [ ] download and install LTP from git
+- [ ] run testing suite inside VM
+- [ ] run testing suite via SSH
