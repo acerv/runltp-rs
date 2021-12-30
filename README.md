@@ -14,9 +14,6 @@ run LTP testing suites and test the Linux kernel.
         -h, --help       Prints help information
         -V, --version    Prints version information
 
-    OPTIONS:
-        -r, --ltproot <LTPROOT>    Define the LTPROOT variable
-
     SUBCOMMANDS:
         help    Prints this message or the help of the given subcommand(s)
         list    List testing suites
@@ -31,7 +28,7 @@ run LTP testing suites and test the Linux kernel.
 - [x] execute runtest file
 - [x] execute "scenario_groups/default"
 - [x] list available testing suites
-- [ ] set LTPROOT via command line
+- [x] handle LTPROOT and TMPDIR variables
 - [ ] report file
 - [ ] download and install LTP from git
 - [ ] run testing suite inside VM

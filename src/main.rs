@@ -8,6 +8,7 @@ fn main() -> Result<(), Error> {
     let yaml = load_yaml!("args.yml");
     let matches = App::from(yaml).get_matches();
 
+    // process run subcommand
     if let Some(ref m) = matches.subcommand_matches("run") {
         let session;
 
@@ -24,6 +25,7 @@ fn main() -> Result<(), Error> {
         session.run();
     }
 
+    // process subcommand
     if let Some(ref m) = matches.subcommand_matches("list") {
         if m.is_present("scenario") {
             let net_session;

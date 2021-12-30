@@ -8,14 +8,6 @@ pub struct Suite {
 }
 
 impl Suite {
-    /// Create a new testing suite.
-    pub const fn new(name: String, tests: Vec<Test>) -> Self {
-        Suite {
-            name: name,
-            tests: tests,
-        }
-    }
-
     /// Create a testing suite from its name.
     pub fn from(name: &str) -> Self {
         let runtest_dir = ltp::runtest_dir();
@@ -28,7 +20,10 @@ impl Suite {
             tests.push(test);
         }
 
-        Suite::new(name.to_string(), tests)
+        Suite {
+            name: name.to_string(),
+            tests: tests,
+        }
     }
 
     /// Run all tests inside the suite.

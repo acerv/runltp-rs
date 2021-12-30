@@ -2,13 +2,6 @@ name: runltp-rs
 version: "1.0"
 author: Andrea Cervesato <andrea.cervesato@suse.com>
 about: LTP runner made in Rust
-args:
-    - ltp-root:
-        short: r
-        long: ltproot
-        value_name: LTPROOT
-        help: Define the LTPROOT variable
-        takes_value: false
 subcommands:
     - list:
         about: List testing suites

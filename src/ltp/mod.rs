@@ -6,10 +6,28 @@ pub mod utils;
 use std::env;
 
 pub fn root_dir() -> String {
-    let cwd = env::current_dir().unwrap();
-    let root_dir = String::from(cwd.to_string_lossy());
+    let ltproot: String;
 
-    root_dir
+    match env::var("LTPROOT") {
+        Ok(root) => ltproot = root,
+        Err(_) => {
+            let cwd = env::current_dir().unwrap();
+            ltproot = String::from(cwd.to_string_lossy());
+        }
+    }
+
+    ltproot
+}
+
+pub fn tmp_dir() -> String {
+    let tmpdir: String;
+
+    match env::var("TMPDIR") {
+        Ok(tmp) => tmpdir = tmp,
+        Err(_) => tmpdir = "/tmp".to_string(),
+    }
+
+    tmpdir
 }
 
 pub fn testcases_dir() -> String {

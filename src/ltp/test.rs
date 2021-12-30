@@ -18,8 +18,13 @@ pub struct Test {
 }
 
 impl Test {
-    /// Create a new Test.
-    pub const fn new(name: String, cmd: String, args: Vec<String>) -> Self {
+    /// Create a new test from a test declaration inside the runtest file.
+    pub fn from_declaration(line: &str) -> Self {
+        let parts: Vec<String> = line.split_whitespace().map(|x| x.to_string()).collect();
+        let name = parts[0].to_string();
+        let cmd = parts[1].to_string();
+        let args = parts[2..].to_vec();
+
         Test {
             name: name,
             cmd: cmd,
@@ -31,16 +36,6 @@ impl Test {
             skip: 0,
             warn: 0,
         }
-    }
-
-    /// Create a new test from a test declaration inside the runtest file.
-    pub fn from_declaration(line: &str) -> Self {
-        let parts: Vec<String> = line.split_whitespace().map(|x| x.to_string()).collect();
-        let name = parts[0].to_string();
-        let cmd = parts[1].to_string();
-        let args = parts[2..].to_vec();
-
-        Test::new(name, cmd, args)
     }
 
     fn process_stdout(&mut self, line: &str) {
@@ -72,6 +67,7 @@ impl Test {
     /// Run the test.
     pub fn run(&mut self) -> result::Result<(), Error> {
         let root_dir = ltp::root_dir();
+        let tmp_dir = ltp::tmp_dir();
         let tc_dir = ltp::testcases_dir();
         let bin_dir = ltp::basebin_dir();
         let path;
@@ -81,11 +77,11 @@ impl Test {
             Err(_e) => path = String::new(),
         };
 
-        let stdout = Command::new(self.name.clone())
+        let stdout = Command::new(&self.name)
             .args(self.args.clone())
             .stdout(Stdio::piped())
             .env("LTPROOT", root_dir)
-            .env("TMPDIR", "/tmp")
+            .env("TMPDIR", tmp_dir)
             .env("PATH", path)
             .spawn()?
             .stdout
