@@ -2,9 +2,8 @@ mod ltp;
 
 use clap::{load_yaml, App};
 use ltp::session::Session;
-use std::io::Error;
 
-fn main() -> Result<(), Error> {
+fn main() {
     let yaml = load_yaml!("args.yml");
     let matches = App::from(yaml).get_matches();
 
@@ -25,7 +24,7 @@ fn main() -> Result<(), Error> {
         session.run();
     }
 
-    // process subcommand
+    // process list subcommand
     if let Some(ref m) = matches.subcommand_matches("list") {
         if m.is_present("scenario") {
             let net_session;
@@ -56,5 +55,25 @@ fn main() -> Result<(), Error> {
         }
     }
 
-    Ok(())
+    // process install subcommand
+    if let Some(ref m) = matches.subcommand_matches("install") {
+        if let Some(ref repo) = m.value_of("gitrepo") {
+            let repo_dir: String;
+            let install_dir: String;
+
+            if let Some(ref dir) = m.value_of("repodir") {
+                repo_dir = dir.to_string();
+            } else {
+                repo_dir = String::new();
+            }
+
+            if let Some(ref dir) = m.value_of("installdir") {
+                install_dir = dir.to_string();
+            } else {
+                install_dir = String::new();
+            }
+
+            ltp::install::install_ltp(repo, &repo_dir, &install_dir);
+        }
+    }
 }

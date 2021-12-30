@@ -9,3 +9,5 @@ edition = "2021"
 regex = "1"
 clap = {version = "2.34.0", features = ["yaml"]}
 chrono = "0.4.19"
+git2 = "0.13.25"
+os_info = "3.0.9"

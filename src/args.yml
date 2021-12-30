@@ -29,3 +29,21 @@ subcommands:
                 long: network
                 help: Run network test suites only
                 takes_value: false
+    - install:
+        about: Install LTP from scratch
+        args:
+            - gitrepo:
+                value_name: GITREPO
+                help: LTP git repository
+                index: 1
+                required: false
+            - repodir:
+                short: r
+                long: repo-dir
+                help: Folder where repo is downloaded
+                takes_value: true
+            - installdir:
+                short: i
+                long: install-dir
+                help: Folder where LTP is installed
+                takes_value: true

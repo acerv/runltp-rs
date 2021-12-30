@@ -1,3 +1,4 @@
+pub mod install;
 pub mod session;
 pub mod suite;
 pub mod test;
