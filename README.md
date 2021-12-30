@@ -19,6 +19,11 @@ run LTP testing suites and test the Linux kernel.
         list    List testing suites
         run     Execute user defined list of test suites (separate with ',')
 
+By changing the following evironment variables it's possibile to change the
+client behavior:
+
+- `LTPROOT`: LTP install directory
+- `TMPDIR`: temporary LTP directory
 
 # Development status
 
