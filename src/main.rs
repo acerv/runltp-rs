@@ -64,13 +64,13 @@ fn main() {
             if let Some(ref dir) = m.value_of("repodir") {
                 repo_dir = dir.to_string();
             } else {
-                repo_dir = String::new();
+                repo_dir = String::from("ltp");
             }
 
             if let Some(ref dir) = m.value_of("installdir") {
                 install_dir = dir.to_string();
             } else {
-                install_dir = String::new();
+                install_dir = String::from("/opt/ltp");
             }
 
             ltp::install::install_ltp(repo, &repo_dir, &install_dir);
