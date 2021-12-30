@@ -58,22 +58,22 @@ fn main() {
     // process install subcommand
     if let Some(ref m) = matches.subcommand_matches("install") {
         if let Some(ref repo) = m.value_of("gitrepo") {
-            let repo_dir: String;
-            let install_dir: String;
+            let repo_dir: &str;
+            let install_dir: &str;
 
             if let Some(ref dir) = m.value_of("repodir") {
-                repo_dir = dir.to_string();
+                repo_dir = dir;
             } else {
-                repo_dir = String::from("ltp");
+                repo_dir = "ltp";
             }
 
             if let Some(ref dir) = m.value_of("installdir") {
-                install_dir = dir.to_string();
+                install_dir = dir;
             } else {
-                install_dir = String::from("/opt/ltp");
+                install_dir = "/opt/ltp";
             }
 
-            ltp::install::install_ltp(repo, &repo_dir, &install_dir);
+            ltp::install::install_ltp(repo, repo_dir, install_dir);
         }
     }
 }
