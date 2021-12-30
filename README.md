@@ -8,16 +8,18 @@ run LTP testing suites and test the Linux kernel.
     LTP runner made in Rust
 
     USAGE:
-        runltp-rs [OPTIONS] [SUBCOMMAND]
+        runltp-rs [SUBCOMMAND]
 
     FLAGS:
         -h, --help       Prints help information
         -V, --version    Prints version information
 
     SUBCOMMANDS:
-        help    Prints this message or the help of the given subcommand(s)
-        list    List testing suites
-        run     Execute user defined list of test suites (separate with ',')
+        help       Prints this message or the help of the given subcommand(s)
+        install    Install LTP from scratch
+        list       List testing suites
+        run        Execute user defined list of test suites (separate with ',')
+
 
 By changing the following evironment variables it's possibile to change the
 client behavior:
@@ -35,6 +37,6 @@ client behavior:
 - [x] list available testing suites
 - [x] handle LTPROOT and TMPDIR variables
 - [ ] report file
-- [ ] download and install LTP from git
+- [x] download and install LTP from git
 - [ ] run testing suite inside VM
 - [ ] run testing suite via SSH
